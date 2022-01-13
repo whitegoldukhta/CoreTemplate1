@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     Connection connection;
+
     public UserDaoJDBCImpl() {
         connection = Util.connection();
     }
@@ -69,7 +70,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             Statement stmt = connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM USER");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Long id = resultSet.getLong(1);
                 String name = resultSet.getString(2);
                 String lastName = resultSet.getString(3);
