@@ -25,15 +25,11 @@ public class Util {
 
     public static Connection connection() {
         try {
-            log.info("Registering JDBC driver...");
-
-
-            Class.forName(JDBC_DRIVER);
 
             log.info("Creating connection to database...");
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return connection;

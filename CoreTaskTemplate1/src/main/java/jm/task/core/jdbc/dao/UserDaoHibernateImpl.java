@@ -5,6 +5,8 @@ import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 import static jm.task.core.jdbc.util.Util.getSessionFactory;
@@ -25,6 +27,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 "age INTEGER NOT NULL)").addEntity(User.class).executeUpdate();
 
         transaction.commit();
+        session.close();
     }
 
     @Override
@@ -37,6 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery("DROP TABLE IF exists jdbc_user.USER").executeUpdate();
 
             transaction.commit();
+            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -83,7 +87,9 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         try (Session session = Util.getSessionFactory().openSession()) {
-            return (List<User>) session.createQuery("FROM User").list();
+            EntityManager em = getSessionFactory().createEntityManager();
+            TypedQuery<User> query = em.createQuery("SELECT w FROM User w", User.class);
+            return query.getResultList();
         }
 //        Session session = getSessionFactory().openSession();
 //        Transaction transaction = null;
@@ -102,5 +108,6 @@ public class UserDaoHibernateImpl implements UserDao {
         session.beginTransaction();
         session.createQuery("DELETE FROM User").executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 }
