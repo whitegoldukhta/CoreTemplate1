@@ -32,11 +32,6 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -55,11 +50,6 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -83,11 +73,6 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -104,11 +89,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -134,11 +114,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -158,11 +133,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             try {
                 connection.rollback();
-                if (stmt != null) {
-                    stmt.close();
-                } if (connection != null) {
-                    connection.close();
-                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
