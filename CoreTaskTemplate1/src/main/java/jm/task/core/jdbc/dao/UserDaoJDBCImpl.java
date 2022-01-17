@@ -27,6 +27,11 @@ public class UserDaoJDBCImpl implements UserDao {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -38,20 +43,33 @@ public class UserDaoJDBCImpl implements UserDao {
             System.out.println("Таблица успешно удалена");
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     public void saveUser(String name, String lastName, byte age) {
         try {
+            connection.setAutoCommit(false);
             String sql = "INSERT INTO USER (name, lastName, age) VALUES (?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setString(2, lastName);
             pstmt.setByte(3, age);
             pstmt.executeUpdate();
+            connection.commit();
             System.out.println("User с именем – " + name + " добавлен в базу данных");
+
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
