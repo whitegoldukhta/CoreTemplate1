@@ -32,9 +32,10 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
+        Session session = null;
         Transaction transaction = null;
         try {
-            Session session = getSessionFactory().openSession();
+            session = getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             session.createSQLQuery("DROP TABLE IF exists jdbc_user.USER").executeUpdate();
@@ -46,6 +47,10 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
 
