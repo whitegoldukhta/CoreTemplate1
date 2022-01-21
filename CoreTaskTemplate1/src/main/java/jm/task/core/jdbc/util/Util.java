@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 @Log
 public class Util {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/jdbc_user";
+//    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/jdbc_user?autoReconnect=true&useSSL=false";
 
     static final String USER = "root";
     static final String PASS = "Whitegoldukhta1488";

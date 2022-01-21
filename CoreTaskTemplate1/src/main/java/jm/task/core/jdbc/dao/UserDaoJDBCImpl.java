@@ -20,7 +20,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             Statement stmt = connection.createStatement();
             // создание таблицы
-            String sql = "CREATE TABLE IF NOT EXISTS USER " +
+            String sql = "CREATE TABLE IF NOT EXISTS user " +
                     "(id INTEGER not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255), " +
                     " lastname VARCHAR(255), " +
@@ -42,7 +42,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             connection.setAutoCommit(false);
             Statement stmt = connection.createStatement();
-            String sql = "DROP TABLE USER";
+            String sql = "DROP TABLE if exists user ";
             stmt.executeUpdate(sql);
             System.out.println("Таблица успешно удалена");
             connection.commit();
