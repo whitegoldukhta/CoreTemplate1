@@ -2,8 +2,6 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import org.hibernate.HibernateError;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,7 +27,6 @@ public class UserDaoHibernateImpl implements UserDao {
                         "age INTEGER NOT NULL)").addEntity(User.class).executeUpdate();
 
                 transaction.commit();
-                session.close();
             } catch (Exception e) {
                 if (transaction != null) {
                     transaction.rollback();
@@ -49,7 +46,6 @@ public class UserDaoHibernateImpl implements UserDao {
                 session.createSQLQuery("DROP TABLE IF exists jdbc_user.USER").executeUpdate();
 
                 transaction.commit();
-                session.close();
             } catch (Exception e) {
                 if (transaction != null) {
                     transaction.rollback();
